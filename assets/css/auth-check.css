@@ -1,0 +1,20 @@
+/* Clienvy Connect — Auth Check Modal */
+
+#wp-auth-check-wrap #wp-auth-check {
+	background: #fff !important;
+	border-radius: 15px !important;
+	top: calc(50% - 350px) !important;
+	height: 700px !important;
+	max-height: unset !important;
+	width: 440px !important;
+	left: 50% !important;
+	padding: 0 !important;
+}
+
+#wp-auth-check-wrap .wp-auth-check-close {
+	display: none !important;
+}
+
+#wp-auth-check-wrap #wp-auth-check-form iframe {
+	height: 100% !important;
+}

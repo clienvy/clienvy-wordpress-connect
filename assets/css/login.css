@@ -1,0 +1,340 @@
+/* Clienvy Connect — Login Page */
+
+/* ── Page ── */
+.login {
+	height: 100%;
+	background: #fff;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: flex;
+    font-family: "Circular Std", sans-serif !important;
+}
+
+/* ── Container ── */
+html #login {
+	padding: 20px !important;
+	width: 500px !important;
+    box-sizing: border-box;
+}
+
+/* ── Logo ── */
+.login h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+html #login h1 a,
+.login h1 a {
+	display: none;
+	background-size: contain;
+	height: 75px;
+	width: 230px;
+	background-repeat: no-repeat;
+	background-position: center;
+	box-shadow: none;
+	outline: none;
+    margin: 0;
+}
+
+
+/* ── Form ── */
+html .login form,
+html .login .message {
+	border: none;
+	border-radius: 0;
+	padding: 0;
+    margin: 0;
+	box-shadow: none;
+	background: none;
+}
+
+html .login form {
+    padding: 5px;
+}
+
+/* –– text –– */
+html .login p {
+    font-size: 16px;
+    color: var(--clienvy-text-color);
+    line-height: 1.3;
+}
+html .login .message p {
+    margin-bottom: 28px;
+}
+
+/* ── Focus ── */
+html *:focus {
+	outline: none;
+}
+
+/* ── Inputs ── */
+html .login form label {
+    color: var(--clienvy-input-label-color);
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+html .login form input {
+	background-color: #fff !important;
+	border-width: 1px !important;
+	padding: 10px 16px !important;
+    height: 43px !important;
+	font-size: 16px !important;
+	border-color: #f2f2f9 !important;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1) !important;
+	border-radius: 11px !important;
+}
+html .login form .wp-hide-pw {
+    display: none !important;
+}
+
+/* ── Submit button ── */
+html .login form .button-primary {
+    margin-top: 15px;
+	background: var(--clienvy-button-background-color) !important;
+	border: none !important;
+	border-radius: 15px !important;
+	font-size: 16px !important;
+	padding: 5px 30px !important;
+    height: 43px !important;
+	letter-spacing: 0.3px;
+    line-height: 1.2 !important;
+	color: var(--clienvy-button-color) !important;
+	width: 100%;
+    box-shadow: none !important;
+	transition: transform 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+html .login form .button-primary:hover {
+    text-decoration: none;
+    color: var(--clienvy-button-color);
+    transform: scale(1.02);
+}
+
+/* ── Remember me ── */
+html .login .forgetmenot {
+	margin-top: 2px;
+    margin-bottom: 7px !important;
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    align-items: center;
+}
+
+html .login #rememberme {
+	padding: 11px !important;
+	accent-color: var(--clienvy-primary);
+    width: 25px !important;
+    height: 25px !important;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+}
+html .login .forgetmenot label {
+    margin: 0;
+}
+
+html .login #rememberme::before {
+	margin: -10px;
+    width: 25px;
+    height: 25px;
+}
+
+/* ── Error ── */
+html .login #login_error {
+	border-radius: 8px;
+	border: 1px solid #f5f5f5;
+	border-left-color: #e89b9b;
+	border-left-width: 4px;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.08);
+	font-size: 16px;
+    position: fixed;
+    padding: 13px 20px;
+    bottom: 10px;
+    left: calc(50% - 300px);
+    width: 600px;
+    box-sizing: border-box;
+}
+html .login #login_error p {
+    color: #888;
+}
+
+/* ── Nav (wachtwoord vergeten) ── */
+.login #nav {
+    margin: 6px 0 0 0 !important;
+    display: flex;
+    padding: 0;
+    justify-content: flex-end;
+}
+
+.login #nav a {
+	font-size: 15px !important;
+	color: var(--clienvy-password-reset-color);
+	text-decoration: none;
+}
+
+.login #nav a:hover {
+	color: var(--clienvy-password-reset-hover-color);
+    outline: none;
+}
+.login #nav a:focus, .login #nav a:active {
+    outline: none;
+    box-shadow: none;
+}
+
+/* ── Back to blog — hidden ── */
+#backtoblog a {
+	display: none !important;
+}
+
+/* ── Privacy policy link — hidden ── */
+html .login .privacy-policy-page-link {
+	display: none;
+}
+
+/* ── Lost password form ── */
+html .login #lostpasswordform {
+}
+
+html .login #lostpasswordform #wp-submit {
+	width: 100% !important;
+}
+
+/* ── Language switcher ── */
+.login.wp-core-ui .language-switcher {
+	position: absolute !important;
+	top: 20px !important;
+	right: 20px !important;
+}
+
+.login.wp-core-ui #language-switcher {
+	display: flex !important;
+	flex-direction: column !important;
+}
+
+.login.wp-core-ui #language-switcher #language-switcher-locales {
+	margin-bottom: 10px !important;
+	padding: 5px 15px !important;
+	border-radius: 10px !important;
+	width: 100% !important;
+}
+
+.login.wp-core-ui #language-switcher .button {
+	padding: 0 !important;
+	border: none !important;
+}
+
+.login.wp-core-ui #language-switcher .dashicons-translation {
+	display: none !important;
+}
+
+
+/* -- email verification -- */
+.admin-email__heading {
+    display: none !important;
+}
+.admin-email__details {
+    font-size: 16px;
+    color: var(--clienvy-text-color);
+    line-height: 1.4;
+}
+.login a {
+    color: var(--clienvy-primary);
+}
+.admin-email__details strong {
+    color: var(--clienvy-strong-text-color);
+}
+.admin-email__actions-primary {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 20px;
+}
+.login .admin-email__actions {
+    margin-top: 20px;
+}
+.login .admin-email__actions .button {
+    background: var(--clienvy-flat-button-background-color) !important;
+    color: var(--clienvy-flat-button-color) !important;
+}
+.login .admin-email__actions .button-primary {
+    margin: 0;
+    background: var(--clienvy-button-background-color) !important;
+    color: var(--clienvy-button-color) !important;
+}
+
+.admin-email__actions-secondary {
+    margin: 10px 0 0 0 !important;
+    display: flex;
+    padding: 0 !important;
+    justify-content: flex-end;
+}
+
+.admin-email__actions-secondary a {
+    font-size: 15px !important;
+    color: var(--clienvy-password-reset-color);
+    text-decoration: none;
+}
+.admin-email__actions-secondary a:active, .admin-email__actions-secondary a:focus {
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+
+/* -- reset password -- */
+#resetpassform .indicator-hint {
+    margin-bottom: 40px !important;
+}
+#resetpassform .reset-pass-submit {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+#resetpassform .reset-pass-submit .button {
+    margin: 0;
+}
+html #resetpassform .pw-weak {
+    margin-top: 0;
+    margin-bottom: 20px;
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    align-items: center;
+}
+#resetpassform #pw-weak {
+    padding: 11px !important;
+    accent-color: var(--clienvy-primary);
+    width: 25px !important;
+    height: 25px !important;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+}
+#resetpassform .pw-weak label {
+    margin: 0;
+}
+
+#resetpassform #pw-weak::before {
+    margin: -10px;
+    width: 25px;
+    height: 25px;
+}
+
+
+
+/* -- mobile -- */
+@media only screen and (max-width: 782px) {
+    html .login #login_error {
+        bottom: 5px;
+        left: 10px;
+        width: calc(100% - 20px);
+    }
+}

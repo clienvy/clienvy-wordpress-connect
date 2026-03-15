@@ -1,0 +1,275 @@
+/* Clienvy Connect — Admin Styles */
+
+/* ── Reset / base ── */
+.clienvy-wrap *,
+.clienvy-wrap *::before,
+.clienvy-wrap *::after {
+	box-sizing: border-box;
+}
+
+.clienvy-wrap {
+	max-width: 750px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 40px;
+    font-family: "Circular Std", sans-serif !important;
+	color: #333;
+}
+
+/* ── Page header ── */
+.clienvy-page-header {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin: 24px 0 18px;
+}
+
+.clienvy-page-header h1 {
+	font-size: 20px;
+	font-weight: 700;
+	color: #333;
+	margin: 0;
+	padding: 0;
+}
+
+.clienvy-version {
+	font-size: 11px;
+	font-weight: 600;
+	color: #fff;
+	background: #4A90E2;
+	padding: 2px 9px;
+	border-radius: 20px;
+	letter-spacing: 0.3px;
+}
+
+/* ── Card ── */
+.clienvy-card {
+	background: #fff;
+	border-radius: 15px;
+	overflow: hidden;
+	margin-bottom: 16px;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.09);
+}
+
+.clienvy-card-body {
+	padding: 24px 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── Card header ── */
+.clienvy-card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 24px 30px;
+    border-width: 0 0 1px 0;
+    border-style: solid;
+    border-color: #eee;
+}
+
+.clienvy-card-header-title {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-size: 18px;
+	font-weight: 500;
+	color: #160547;
+}
+
+.clienvy-card-header-info {
+	font-size: 16px;
+    line-height: 1.3;
+	color: #bbb;
+	margin: 0;
+}
+
+/* ── Status pill (inline in card title) ── */
+.clienvy-status-pill {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	padding: 3px 10px 3px 7px;
+	border-radius: 20px;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 1;
+}
+
+.clienvy-status-pill--connected {
+	background: #f0fdf4;
+	color: #16a34a;
+	border: 1px solid #bbf7d0;
+    height: 22px;
+}
+
+.clienvy-status-pill--disconnected {
+	background: #fef2f2;
+	color: #dc2626;
+	border: 1px solid #fecaca;
+}
+
+.clienvy-status-dot {
+	width: 7px;
+	height: 7px;
+	border-radius: 50%;
+	flex-shrink: 0;
+}
+
+.clienvy-status-pill--connected .clienvy-status-dot {
+	background: #22c55e;
+}
+
+.clienvy-status-pill--disconnected .clienvy-status-dot {
+	background: #ef4444;
+}
+
+/* ── Secret area ── */
+.clienvy-secret-area {
+	margin-bottom: 12px;
+}
+
+.clienvy-field-label {
+	display: block;
+	font-size: 12px;
+	font-weight: 600;
+	color: #666;
+	margin-bottom: 8px;
+	letter-spacing: 0.2px;
+}
+
+.clienvy-secret-masked {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	background: #F5F5F5;
+	border: 1px solid #E8E8E8;
+	border-radius: 10px;
+	padding: 8px 14px;
+}
+
+.clienvy-masked-set {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex: 1;
+	min-width: 0;
+}
+
+.clienvy-secret-dots {
+	font-size: 16px;
+	letter-spacing: 3px;
+	color: #bbb;
+	line-height: 1;
+	user-select: none;
+}
+
+.clienvy-secret-renew {
+	flex-shrink: 0;
+	background: none;
+	border: 1px solid #E8E8E8;
+	padding: 5px 10px;
+	cursor: pointer;
+	color: #999;
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	border-radius: 20px;
+	font-size: 12px;
+	font-weight: 600;
+    height: 26px;
+	transition: color 0.15s, background 0.15s, border-color 0.15s;
+}
+
+.clienvy-secret-renew:hover {
+	color: #E74C3C;
+	border-color: #fecaca;
+	background: #fef2f2;
+}
+
+.clienvy-secret-renew--reveal:hover {
+	color: #357abd;
+	border-color: #bfdbfe;
+	background: #eff6ff;
+}
+
+.clienvy-secret-display {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	background: #F5F5F5;
+	border: 1px solid #E8E8E8;
+	border-radius: 10px;
+    padding: 5px 15px 5px 20px;
+    height: 46px;
+}
+
+.clienvy-secret-display code {
+	flex: 1;
+	font-family: "SF Mono", "Fira Code", "Fira Mono", "Courier New", monospace;
+	font-size: 14px;
+	color: #333;
+	word-break: break-all;
+	line-height: 1.5;
+	background: none;
+	padding: 0;
+	border: none;
+}
+
+.clienvy-warning {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	color: #c0392b;
+	font-size: 14px;
+	margin: 8px 0 0;
+}
+
+
+/* ── Buttons ── */
+.clienvy-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+	padding: 9px 20px;
+	border-radius: 20px;
+	font-size: 13px;
+	font-weight: 600;
+	cursor: pointer;
+	border: 1.5px solid transparent;
+	line-height: 1;
+	transition: background 0.15s, border-color 0.15s, color 0.15s, opacity 0.15s;
+	text-decoration: none;
+    height: 26px;
+}
+
+.clienvy-btn:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.clienvy-btn-primary {
+	background: #4A90E2;
+	color: #fff;
+	border-color: #4A90E2;
+}
+
+.clienvy-btn-primary:hover:not(:disabled) {
+	background: #357abd;
+	border-color: #357abd;
+	color: #fff;
+}
+
+.clienvy-btn-ghost {
+	background: #fff;
+	color: #4A90E2;
+	border-color: #4A90E2;
+	padding: 6px 14px;
+	font-size: 12px;
+	border-radius: 20px;
+}
+
+.clienvy-btn-ghost:hover:not(:disabled) {
+	background: #4A90E2;
+	color: #fff;
+}
