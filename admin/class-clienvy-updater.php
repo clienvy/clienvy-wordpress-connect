@@ -69,14 +69,14 @@ class Clienvy_Updater {
 		$info->name          = 'Clienvy Connect';
 		$info->slug          = dirname( $this->plugin_slug );
 		$info->version       = $remote_version;
-		$info->author        = '<a href="https://clienvy.com">Clienvy</a>';
+		$info->author        = '<a href="https://clienvy.io">Clienvy</a>';
 		$info->homepage      = 'https://github.com/' . $this->github_repo;
 		$info->requires      = '6.0';
 		$info->tested        = get_bloginfo( 'version' );
 		$info->last_updated  = $release->published_at;
 		$info->download_link = $this->get_download_url( $release );
 		$info->sections      = [
-			'description' => 'Verbind uw WordPress site met Clienvy CRM met SSO-ondersteuning.',
+			'description' => 'Verbind WordPress met Clienvy om gebruik te kunnen maken van One-Click Login.',
 			'changelog'   => $this->format_changelog( $release->body ?? '' ),
 		];
 
@@ -96,8 +96,12 @@ class Clienvy_Updater {
 
 		global $wp_filesystem;
 
-		$plugin_dir    = WP_PLUGIN_DIR . '/' . dirname( $this->plugin_slug );
-		$extracted_dir = $result['destination'];
+		$plugin_dir    = trailingslashit( WP_PLUGIN_DIR . '/' . dirname( $this->plugin_slug ) );
+		$extracted_dir = trailingslashit( $result['destination'] );
+
+		if ( $extracted_dir === $plugin_dir ) {
+			return $response;
+		}
 
 		if ( $wp_filesystem->exists( $plugin_dir ) ) {
 			$wp_filesystem->delete( $plugin_dir, true );

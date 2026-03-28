@@ -3,7 +3,7 @@
  * Plugin Name: Clienvy Connect
  * Plugin URI: https://clienvy.io
  * Description: Connect WordPress with Clienvy
- * Version: 1.0.0
+ * Version: 1.0.3
  * Author: Clienvy
  * License: GPL-2.0+
  */
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'CLIENVY_VERSION', '1.0.0' );
+define( 'CLIENVY_VERSION', '1.0.3' );
 define( 'CLIENVY_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'CLIENVY_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'CLIENVY_GITHUB_REPO', 'clienvy/clienvy-wordpress-connect' );
