@@ -3,7 +3,7 @@
  * Plugin Name: Clienvy Connect
  * Plugin URI: https://clienvy.io
  * Description: Connect WordPress with Clienvy
- * Version: 1.0.3
+ * Version: 1.0.8
  * Author: Clienvy
  * License: GPL-2.0+
  */
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'CLIENVY_VERSION', '1.0.3' );
+define( 'CLIENVY_VERSION', '1.0.8' );
 define( 'CLIENVY_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'CLIENVY_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'CLIENVY_GITHUB_REPO', 'clienvy/clienvy-wordpress-connect' );
@@ -31,6 +31,7 @@ require_once CLIENVY_PLUGIN_DIR . 'api/class-clienvy-router.php';
 // ── Admin ─────────────────────────────────────────────────────────────────────
 require_once CLIENVY_PLUGIN_DIR . 'admin/class-clienvy-updater.php';
 require_once CLIENVY_PLUGIN_DIR . 'admin/class-clienvy-settings-page.php';
+require_once CLIENVY_PLUGIN_DIR . 'admin/class-clienvy-cli.php';
 
 // ── Frontend ──────────────────────────────────────────────────────────────────
 require_once CLIENVY_PLUGIN_DIR . 'frontend/class-clienvy-login-page.php';

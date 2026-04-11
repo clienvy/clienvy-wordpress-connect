@@ -21,12 +21,12 @@
 	content: "";
 	flex: 1;
 	height: 1px;
-	background: var(--clienvy-separator-border-color);
+	background: var(--clienvy-auth-separator-border-color);
 }
 
 .clienvy-divider span {
 	font-size: 13px;
-	color: var(--clienvy-separator-color);
+	color: var(--clienvy-auth-separator-color);
 	font-weight: 500;
 }
 
@@ -53,8 +53,8 @@
 	line-height: 1;
 	cursor: pointer;
 	letter-spacing: 0.3px;
-    background: var(--clienvy-button-background-color, #2171B1);
-    color: var(--clienvy-button-color, #fff);
+    background: var(--clienvy-auth-button-background-color, #2171B1);
+    color: var(--clienvy-auth-button-color, #fff);
     height: 43px;
     box-sizing: border-box;
     transition: transform 0.2s;
@@ -62,15 +62,15 @@
 
 .wp-core-ui form .button:hover, .login .clienvy-sso-btn:hover {
 	text-decoration: none;
-    background: var(--clienvy-button-background-color, #2171B1);
-    color: var(--clienvy-button-color, #fff);
+    background: var(--clienvy-auth-button-background-color, #2171B1);
+    color: var(--clienvy-auth-button-color, #fff);
     transform: scale(1.02);
     outline: none;
     border: none
 }
 .wp-core-ui form .button:focus, .wp-core-ui form .button:active, .login .clienvy-sso-btn:active, .login .clienvy-sso-btn:focus {
-    background: var(--clienvy-button-background-color, #2171B1);
-    color: var(--clienvy-button-color, #fff);
+    background: var(--clienvy-auth-button-background-color, #2171B1);
+    color: var(--clienvy-auth-button-color, #fff);
     outline: none;
     box-shadow: none;
 }

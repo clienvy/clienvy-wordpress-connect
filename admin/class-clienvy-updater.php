@@ -111,6 +111,10 @@ class Clienvy_Updater {
 
 		$result['destination'] = $plugin_dir;
 
+		// Clear caches so the just-installed version is used on the next check
+		delete_transient( self::CACHE_KEY );
+		delete_site_transient( 'update_plugins' );
+
 		// Re-activate the plugin after update
 		activate_plugin( $this->plugin_slug );
 

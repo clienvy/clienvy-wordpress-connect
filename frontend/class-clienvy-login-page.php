@@ -124,18 +124,23 @@ class Clienvy_Login {
 
 		echo "<style>\n";
 		echo ":root { 
-		--clienvy-primary: {$color}; 
-		--clienvy-button-background-color: {$color};
-		--clienvy-flat-button-background-color: #f7f7f7;
-		--clienvy-flat-button-color: #333;
-		--clienvy-button-color: #fff;
-		--clienvy-password-reset-color: #ccc;
-		--clienvy-password-reset-hover-color: #bbb;
-		--clienvy-separator-color: #ccc;
-		--clienvy-separator-border-color: #ddd;
-		--clienvy-input-label-color: #aaa;
-		--clienvy-text-color: #bbb;
-		--clienvy-strong-text-color: #999;
+		--clienvy-auth-primary-color: {$color}; 
+		--clienvy-auth-background-color: #fff;
+		--clienvy-auth-button-background-color: {$color};
+		--clienvy-auth-flat-button-background-color: #f7f7f7;
+		--clienvy-auth-flat-button-color: #333;
+		--clienvy-auth-button-color: #fff;
+		--clienvy-auth-password-reset-color: #ccc;
+		--clienvy-auth-password-reset-hover-color: #bbb;
+		--clienvy-auth-separator-color: #ccc;
+		--clienvy-auth-separator-border-color: #ddd;
+		--clienvy-auth-input-label-color: #aaa;
+		--clienvy-auth-input-background-color: #fff;
+		--clienvy-auth-input-color: #222;
+		--clienvy-auth-input-border-color: #f2f2f9;
+		--clienvy-auth-input-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+		--clienvy-auth-text-color: #bbb;
+		--clienvy-auth-strong-text-color: #999;
 		}\n";
 
 		if ( $logo ) {
