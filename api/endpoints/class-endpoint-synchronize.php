@@ -12,10 +12,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Clienvy_Endpoint_Synchronize {
 
-	public function __construct(
-		private Clienvy_Auth $auth,
-		private Clienvy_Settings_Synchronize $synchronize,
-	) {}
+	private $auth;
+	private $synchronize;
+
+	public function __construct( Clienvy_Auth $auth, Clienvy_Settings_Synchronize $synchronize ) {
+		$this->auth        = $auth;
+		$this->synchronize = $synchronize;
+	}
 
 	public function handle( WP_REST_Request $request ): WP_REST_Response {
 		if ( ! $this->auth->is_authorized( $request ) ) {

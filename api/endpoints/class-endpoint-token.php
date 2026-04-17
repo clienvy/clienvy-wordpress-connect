@@ -13,7 +13,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Clienvy_Endpoint_Token {
 
-	public function __construct( private Clienvy_Auth $auth ) {}
+	private $auth;
+
+	public function __construct( Clienvy_Auth $auth ) {
+		$this->auth = $auth;
+	}
 
 	public function handle( WP_REST_Request $request ): WP_REST_Response {
 		if ( ! $this->auth->is_authorized( $request ) ) {
@@ -61,7 +65,10 @@ class Clienvy_Endpoint_Token {
 		], 200 );
 	}
 
-	private function create_user( string $email, string $first_name, string $last_name, string $role ): WP_User|WP_Error {
+	/**
+	 * @return WP_User|WP_Error
+	 */
+	private function create_user( string $email, string $first_name, string $last_name, string $role ) {
 		$base     = sanitize_user( strtolower( $first_name . '.' . $last_name ), true );
 		$username = $base;
 		$i        = 1;

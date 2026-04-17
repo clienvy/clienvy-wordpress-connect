@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Clienvy_Endpoint_Login {
 
-	public function handle( WP_REST_Request $request ): never {
+	public function handle( WP_REST_Request $request ): void {
 		$token = sanitize_text_field( $request->get_param( 'token' ) );
 
 		if ( ! $token ) {

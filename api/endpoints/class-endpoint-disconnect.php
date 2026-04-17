@@ -16,7 +16,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Clienvy_Endpoint_Disconnect {
 
-	public function __construct( private Clienvy_Auth $auth ) {}
+	private $auth;
+
+	public function __construct( Clienvy_Auth $auth ) {
+		$this->auth = $auth;
+	}
 
 	public function handle( WP_REST_Request $request ): WP_REST_Response {
 		if ( ! $this->auth->is_authorized( $request ) ) {

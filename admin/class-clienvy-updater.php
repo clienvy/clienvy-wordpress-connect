@@ -49,7 +49,11 @@ class Clienvy_Updater {
 
 	// ── Plugin details popup ──────────────────────────────────────────────────
 
-	public function plugin_details( mixed $result, string $action, object $args ): mixed {
+	/**
+	 * @param mixed $result
+	 * @return mixed
+	 */
+	public function plugin_details( $result, string $action, object $args ) {
 		if ( $action !== 'plugin_information' ) {
 			return $result;
 		}
@@ -85,7 +89,11 @@ class Clienvy_Updater {
 
 	// ── Post-install: fix folder name ─────────────────────────────────────────
 
-	public function fix_folder_name( bool|WP_Error $response, array $hook_extra, array $result ): bool|WP_Error {
+	/**
+	 * @param bool|WP_Error $response
+	 * @return bool|WP_Error
+	 */
+	public function fix_folder_name( $response, array $hook_extra, array $result ) {
 		if ( is_wp_error( $response ) ) {
 			return $response;
 		}
@@ -162,7 +170,7 @@ class Clienvy_Updater {
 		// Prefer a zip asset named "clienvy-connect.zip" attached to the release
 		if ( ! empty( $release->assets ) ) {
 			foreach ( $release->assets as $asset ) {
-				if ( str_ends_with( $asset->name, '.zip' ) ) {
+				if ( substr( $asset->name, -4 ) === '.zip' ) {
 					return $asset->browser_download_url;
 				}
 			}
@@ -182,7 +190,7 @@ class Clienvy_Updater {
 		$obj->icons       = [];
 		$obj->banners     = [];
 		$obj->tested      = get_bloginfo( 'version' );
-		$obj->requires_php = '8.1';
+		$obj->requires_php = '7.4';
 
 		return $obj;
 	}

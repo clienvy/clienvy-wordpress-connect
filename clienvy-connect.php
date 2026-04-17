@@ -6,6 +6,7 @@
  * Version: 1.0.8
  * Author: Clienvy
  * License: GPL-2.0+
+ * Requires PHP: 7.4
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
