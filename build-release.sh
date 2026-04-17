@@ -21,6 +21,8 @@ rsync -av \
   --exclude=".env" \
   --exclude=".env.*" \
   --exclude="build" \
+  --exclude="build-release.sh" \
+  --exclude=".gitignore" \
   "$PROJECT_DIR/" "$OUTPUT_DIR/"
 
 cd "$BUILD_DIR"
