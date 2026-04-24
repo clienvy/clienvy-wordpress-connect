@@ -27,19 +27,16 @@ class Clienvy_Endpoint_Disconnect {
 			return $this->auth->unauthorized();
 		}
 
-		// Wipe all CRM-pushed settings
 		delete_option( 'clienvy_settings' );
 
-		// Rotate the secret so the old CRM key stops working immediately
-		update_option( 'clienvy_connection_secret', clienvy_generate_secret() );
+		update_option( 'clienvy_connection_secret', Clienvy_Secret::generate() );
 		update_option( 'clienvy_secret_revealed', false );
 
-		// Flush rewrite rules in case a custom login slug was active
 		flush_rewrite_rules();
 
 		return new WP_REST_Response( [
 			'success' => true,
-			'message' => 'Site disconnected from Clienvy.',
+			'message' => Clienvy_I18n::t( '_api.connection_disconnect_done' ),
 		], 200 );
 	}
 }

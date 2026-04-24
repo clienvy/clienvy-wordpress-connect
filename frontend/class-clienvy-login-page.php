@@ -1,129 +1,162 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if( !defined('ABSPATH') ) {
+    exit;
 }
 
-class Clienvy_Login {
 
-	private array $settings;
-	private bool  $styling_enabled;
+class Clienvy_Login
+{
 
-	public function __construct() {
-		$this->settings        = get_option( 'clienvy_settings', [] );
-		$this->styling_enabled = ! empty( $this->settings['custom_login_styling_enabled'] );
+    private array $settings;
 
-		add_action( 'login_enqueue_scripts', [ $this, 'enqueue_styles' ] );
+    private bool $styling_enabled;
 
-		if ( $this->styling_enabled ) {
-			add_action( 'login_head', [ $this, 'inject_dynamic_styles' ] );
-			add_filter( 'login_headerurl', [ $this, 'logo_url' ] );
-			add_filter( 'login_headertext', [ $this, 'logo_title' ] );
-			add_filter( 'login_message', [ $this, 'render_login_heading' ] );
-		}
 
-		add_action( 'login_footer', [ $this, 'render_sso_buttons' ] );
+    public function __construct()
+    {
+        $this->settings = get_option('clienvy_settings', []);
+        $this->styling_enabled = !empty($this->settings[ 'custom_login_styling_enabled' ]);
 
-		if ( ! empty( $this->settings['custom_login_slug'] ) ) {
-			// Priority 1 so we intercept before anything else runs.
-			add_action( 'init', [ $this, 'register_login_route' ], 1 );
-			add_action( 'init', [ $this, 'maybe_block_wp_login' ], 1 );
-			// login_url is the most reliable hook — fires last in wp_login_url().
-			add_filter( 'login_url', [ $this, 'override_login_url' ], 10, 3 );
-			add_filter( 'site_url', [ $this, 'rewrite_login_url' ], 10, 4 );
-			add_filter( 'network_site_url', [ $this, 'rewrite_login_url' ], 10, 3 );
-			add_filter( 'wp_redirect', [ $this, 'rewrite_login_url' ], 10, 2 );
-		}
-	}
+        add_action('login_head', [$this, 'inject_font']);
+        add_action('login_enqueue_scripts', [$this, 'enqueue_styles']);
 
-	// ── Custom login slug ─────────────────────────────────────────────────────
+        if( $this->styling_enabled ) {
+            add_action('wp_enqueue_scripts', [$this, 'enqueue_auth_check']);
+            add_action('admin_enqueue_scripts', [$this, 'enqueue_auth_check']);
+            add_action('login_head', [$this, 'inject_dynamic_styles']);
+            add_filter('login_headerurl', [$this, 'logo_url']);
+            add_filter('login_headertext', [$this, 'logo_title']);
+            add_filter('login_message', [$this, 'render_login_heading']);
+        }
 
-	public function register_login_route(): void {
-		global $pagenow;
+        add_action('login_footer', [$this, 'render_sso_buttons']);
 
-		$slug = sanitize_title( $this->settings['custom_login_slug'] );
-		$req  = parse_url( $_SERVER['REQUEST_URI'] ?? '' );
-		$path = isset( $req['path'] ) ? untrailingslashit( $req['path'] ) : '';
-		$base = untrailingslashit( parse_url( home_url(), PHP_URL_PATH ) ?? '' );
+        if( !empty($this->settings[ 'custom_login_slug' ]) ) {
+            add_action('init', [$this, 'register_login_route'], 1);
+            add_action('init', [$this, 'maybe_block_wp_login'], 1);
 
-		if ( $path === $base . '/' . $slug ) {
-			$pagenow = 'wp-login.php';
-			// Pre-initialize variables wp-login.php conditionally sets but
-			// unconditionally reads — PHP 8.x warns on undefined variables.
-			$user_login = '';
-			$error      = '';
-			require ABSPATH . 'wp-login.php';
-			exit;
-		}
-	}
+            add_filter('login_url', [$this, 'override_login_url'], 10, 3);
+            add_filter('site_url', [$this, 'rewrite_login_url'], 10, 4);
+            add_filter('network_site_url', [$this, 'rewrite_login_url'], 10, 3);
+            add_filter('wp_redirect', [$this, 'rewrite_login_url'], 10, 2);
+        }
+    }
 
-	public function maybe_block_wp_login(): void {
-		if ( ! isset( $_SERVER['REQUEST_URI'] ) ) {
-			return;
-		}
-		if ( defined( 'XMLRPC_REQUEST' ) || defined( 'DOING_AJAX' ) ) {
-			return;
-		}
 
-		$path = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
-		if ( ! $path ) {
-			return;
-		}
+    // ── Custom login slug ─────────────────────────────────────────────────────
 
-		// Block direct wp-login.php access.
-		if ( preg_match( '#/wp-login\.php#', $path ) ) {
-			$this->serve_404();
-		}
+    public function register_login_route(): void
+    {
+        global $pagenow;
 
-		// Block unauthenticated wp-admin access — don't redirect, which would
-		// reveal the custom login URL.
-		if ( preg_match( '#/wp-admin(/|$)#', $path ) && ! is_user_logged_in() ) {
-			$this->serve_404();
-		}
-	}
+        $slug = sanitize_title($this->settings[ 'custom_login_slug' ]);
+        $req = parse_url($_SERVER[ 'REQUEST_URI' ] ?? '');
+        $path = isset($req[ 'path' ]) ? untrailingslashit($req[ 'path' ]) : '';
+        $base = untrailingslashit(parse_url(home_url(), PHP_URL_PATH) ?? '');
 
-	private function serve_404(): void {
-		wp_redirect( home_url( '/' ), 302 );
-		exit;
-	}
+        if( $path === $base . '/' . $slug ) {
+            $pagenow = 'wp-login.php';
+            $user_login = '';
+            $error = '';
+            require ABSPATH . 'wp-login.php';
+            exit;
+        }
+    }
 
-	public function override_login_url( string $login_url, string $redirect, bool $force_reauth ): string {
-		$slug = sanitize_title( $this->settings['custom_login_slug'] );
-		$url  = home_url( '/' . $slug . '/' );
-		if ( $redirect ) {
-			$url = add_query_arg( 'redirect_to', urlencode( $redirect ), $url );
-		}
-		if ( $force_reauth ) {
-			$url = add_query_arg( 'reauth', '1', $url );
-		}
-		return $url;
-	}
 
-	public function rewrite_login_url( string $url, ...$args ): string {
-		if ( strpos( $url, 'wp-login.php' ) !== false ) {
-			$slug = sanitize_title( $this->settings['custom_login_slug'] );
-			$url  = str_replace( 'wp-login.php', $slug, $url );
-		}
-		return $url;
-	}
+    public function maybe_block_wp_login(): void
+    {
+        if( !isset($_SERVER[ 'REQUEST_URI' ]) ) {
+            return;
+        }
+        if( defined('XMLRPC_REQUEST') || defined('DOING_AJAX') ) {
+            return;
+        }
 
-	// ── Styles (only when custom_login_styling_enabled = true) ────────────────────────
+        $path = parse_url($_SERVER[ 'REQUEST_URI' ], PHP_URL_PATH);
+        if( !$path ) {
+            return;
+        }
 
-	public function enqueue_styles(): void {
-		wp_enqueue_style( 'clienvy-sso', CLIENVY_PLUGIN_URL . 'assets/css/sso.css', [], CLIENVY_VERSION );
+        // Block direct wp-login.php access.
+        if( preg_match('#/wp-login\.php#', $path) ) {
+            $this->serve_404();
+        }
 
-		if ( $this->styling_enabled ) {
-			wp_enqueue_style( 'clienvy-login', CLIENVY_PLUGIN_URL . 'assets/css/login.css', [ 'clienvy-sso' ], CLIENVY_VERSION );
-		}
-	}
+        // Block unauthenticated wp-admin access — don't redirect, which would reveal the custom login URL.
+        if( preg_match('#/wp-admin(/|$)#', $path) && !is_user_logged_in() ) {
+            $this->serve_404();
+        }
+    }
 
-	public function inject_dynamic_styles(): void {
-		$color      =  $this->settings['primary_color'] ?? '#4A90E2';
-		$logo       = ! empty( $this->settings['logo_url'] ) ? esc_url( $this->settings['logo_url'] ) : '';
-		$custom_css = $this->settings['custom_login_css'] ?? '';
 
-		echo "<style>\n";
-		echo ":root { 
+    private function serve_404(): void
+    {
+        wp_redirect(home_url('/'), 302);
+        exit;
+    }
+
+
+    public function override_login_url(string $login_url, string $redirect, bool $force_reauth): string
+    {
+        $slug = sanitize_title($this->settings[ 'custom_login_slug' ]);
+        $url = home_url('/' . $slug . '/');
+        if( $redirect ) {
+            $url = add_query_arg('redirect_to', urlencode($redirect), $url);
+        }
+        if( $force_reauth ) {
+            $url = add_query_arg('reauth', '1', $url);
+        }
+        return $url;
+    }
+
+
+    public function rewrite_login_url(string $url, ...$args): string
+    {
+        if( strpos($url, 'wp-login.php') !== false ) {
+            $slug = sanitize_title($this->settings[ 'custom_login_slug' ]);
+            $url = str_replace('wp-login.php', $slug, $url);
+        }
+        return $url;
+    }
+
+
+    // ── Font ──────────────────────────────────────────────────────────────────
+
+    public function inject_font(): void
+    {
+        $font_url = esc_url(CLIENVY_PLUGIN_URL . 'assets/fonts/circular-std-400.woff');
+        echo "<style>@font-face { font-family: 'Circular Std'; font-weight: 400; src: url('{$font_url}') format('woff'); }</style>\n";
+    }
+
+
+    // ── Styles (only when custom_login_styling_enabled = true) ────────────────────────
+
+    public function enqueue_styles(): void
+    {
+        wp_enqueue_style('clienvy-sso', CLIENVY_PLUGIN_URL . 'frontend/styles/sso.css', [], CLIENVY_VERSION);
+
+        if( $this->styling_enabled ) {
+            wp_enqueue_style('clienvy-login', CLIENVY_PLUGIN_URL . 'frontend/styles/login.css', ['clienvy-sso'], CLIENVY_VERSION);
+        }
+    }
+
+
+    public function enqueue_auth_check(): void
+    {
+        wp_enqueue_style('clienvy-auth-check', CLIENVY_PLUGIN_URL . 'frontend/styles/auth-check.css', [], CLIENVY_VERSION);
+    }
+
+
+    public function inject_dynamic_styles(): void
+    {
+        $color = $this->settings[ 'primary_color' ] ?? '#4A90E2';
+        $logo = !empty($this->settings[ 'logo_url' ]) ? esc_url($this->settings[ 'logo_url' ]) : '';
+        $custom_css = $this->settings[ 'custom_login_css' ] ?? '';
+
+        echo "<style>\n";
+        echo ":root { 
 		--clienvy-auth-primary-color: {$color}; 
 		--clienvy-auth-background-color: #fff;
 		--clienvy-auth-button-background-color: {$color};
@@ -143,102 +176,111 @@ class Clienvy_Login {
 		--clienvy-auth-strong-text-color: #999;
 		}\n";
 
-		if ( $logo ) {
-			echo "#login h1 a { display: block !important; background-image: url('{$logo}'); }\n";
-		}
+        if( $logo ) {
+            echo "#login h1 a { display: block !important; background-image: url('{$logo}'); }\n";
+        }
 
-		if ( $custom_css ) {
-			echo $custom_css . "\n";
-		}
+        if( $custom_css ) {
+            echo $custom_css . "\n";
+        }
 
-		echo "</style>\n";
-	}
+        echo "</style>\n";
+    }
 
-	// ── Logo link / title ─────────────────────────────────────────────────────
 
-	public function logo_url(): string {
-		return home_url( '/' );
-	}
+    // ── Logo link / title ─────────────────────────────────────────────────────
 
-	public function logo_title(): string {
-		return ! empty( $this->settings['organization_name'] )
-			? esc_html( $this->settings['organization_name'] )
-			: get_bloginfo( 'name' );
-	}
+    public function logo_url(): string
+    {
+        return home_url('/');
+    }
 
-	public function render_login_heading( string $message ): string {
-		$action = $_REQUEST['action'] ?? 'login';
-		if ( in_array( $action, [ 'lostpassword', 'retrievepassword', 'resetpass', 'rp', 'confirm_admin_email' ], true )
-			|| ( $_REQUEST['checkemail'] ?? '' ) === 'confirm' ) {
-			return $message;
-		}
 
-		$html = '<div class="message"><p>Login hieronder in met je Wordpress account, of maak gebruik van One-Click Login via Clienvy.</p></div>';
+    public function logo_title(): string
+    {
+        return !empty($this->settings[ 'organization_name' ])
+                ? esc_html($this->settings[ 'organization_name' ])
+                : get_bloginfo('name');
+    }
 
-		return $message . $html;
-	}
 
-	// ── SSO buttons ───────────────────────────────────────────────────────────
+    public function render_login_heading(string $message): string
+    {
+        $action = $_REQUEST[ 'action' ] ?? 'login';
+        if( in_array($action, ['lostpassword', 'retrievepassword', 'resetpass', 'rp', 'confirm_admin_email'], true)
+                || ($_REQUEST[ 'checkemail' ] ?? '') === 'confirm' ) {
+            return $message;
+        }
 
-	public function render_sso_buttons(): void {
-		$action = $_REQUEST['action'] ?? 'login';
-		if ( in_array( $action, [ 'lostpassword', 'retrievepassword', 'resetpass', 'rp', 'confirm_admin_email' ], true )
-			|| ( $_REQUEST['checkemail'] ?? '' ) === 'confirm' ) {
-			return;
-		}
+        $html = '<div class="message"><p>' . esc_html(Clienvy_I18n::t('_admin._frontend._login.heading')) . '</p></div>';
 
-		$employee_url    = $this->settings['employee_portal_url'] ?? '';
-		$customer_url    = $this->settings['customer_portal_url'] ?? '';
-		$app_id          = $this->settings['website_application_id'] ?? '';
-		$customer_access = $this->settings['customer_access'] ?? true;
+        return $message . $html;
+    }
 
-		// When customer_access is explicitly false, suppress the customer button.
-		if ( ! $customer_access ) {
-			$customer_url = '';
-		}
 
-		if ( ! $employee_url && ! $customer_url ) {
-			return;
-		}
+    // ── SSO buttons ───────────────────────────────────────────────────────────
 
-		$params = [
-			'action' => 'wordpress_sso',
-			'application_id' => $app_id,
-		];
+    public function render_sso_buttons(): void
+    {
+        $action = $_REQUEST[ 'action' ] ?? 'login';
+        if( in_array($action, ['lostpassword', 'retrievepassword', 'resetpass', 'rp', 'confirm_admin_email'], true)
+                || ($_REQUEST[ 'checkemail' ] ?? '') === 'confirm' ) {
+            return;
+        }
 
-		$employee_href = $employee_url ? add_query_arg( $params, $employee_url ) : '';
-		$customer_href = $customer_url ? add_query_arg( $params, $customer_url ) : '';
+        $employee_url = $this->settings[ 'employee_portal_url' ] ?? '';
+        $customer_url = $this->settings[ 'customer_portal_url' ] ?? '';
+        $app_id = $this->settings[ 'website_application_id' ] ?? '';
+        $customer_access = $this->settings[ 'customer_access' ] ?? true;
 
-		?>
-		<div id="clienvy-sso-mount" style="display:none;">
-			<div class="clienvy-sso">
-				<div class="clienvy-divider"><span>Of</span></div>
-				<div class="clienvy-sso-buttons">
-					<?php if ( $employee_href ) : ?>
-						<a href="<?php echo esc_url( $employee_href ); ?>"
-						   class="clienvy-sso-btn">
-							Inloggen als beheerder
-						</a>
-					<?php endif; ?>
-					<?php if ( $customer_href ) : ?>
-						<a href="<?php echo esc_url( $customer_href ); ?>"
-						   class="clienvy-sso-btn">
-							Inloggen als klant
-						</a>
-					<?php endif; ?>
-				</div>
-			</div>
-		</div>
-		<script>
-		(function () {
-			var mount = document.getElementById('clienvy-sso-mount');
-			var login = document.getElementById('login');
-			if ( mount && login ) {
-				mount.style.display = '';
-				login.appendChild(mount);
-			}
-		})();
-		</script>
-		<?php
-	}
+        // When customer_access is explicitly false, suppress the customer button.
+        if( !$customer_access ) {
+            $customer_url = '';
+        }
+
+        if( !$employee_url && !$customer_url ) {
+            return;
+        }
+
+        $params = [
+                'action' => 'wordpress_sso',
+                'application_id' => $app_id,
+        ];
+
+        $employee_href = $employee_url ? add_query_arg($params, $employee_url) : '';
+        $customer_href = $customer_url ? add_query_arg($params, $customer_url) : '';
+
+        ?>
+        <div id="clienvy-sso-mount" style="display:none;">
+            <div class="clienvy-sso">
+                <div class="clienvy-divider">
+                    <span><?php echo esc_html(Clienvy_I18n::t('_admin._frontend._login.or')); ?></span></div>
+                <div class="clienvy-sso-buttons">
+                    <?php if( $employee_href ) : ?>
+                        <a href="<?php echo esc_url($employee_href); ?>"
+                           class="clienvy-sso-btn">
+                            <?php echo esc_html(Clienvy_I18n::t('_admin._frontend._login.sso_employee')); ?>
+                        </a>
+                    <?php endif; ?>
+                    <?php if( $customer_href ) : ?>
+                        <a href="<?php echo esc_url($customer_href); ?>"
+                           class="clienvy-sso-btn">
+                            <?php echo esc_html(Clienvy_I18n::t('_admin._frontend._login.sso_customer')); ?>
+                        </a>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+        <script>
+            (function () {
+                var mount = document.getElementById('clienvy-sso-mount');
+                var login = document.getElementById('login');
+                if (mount && login) {
+                    mount.style.display = '';
+                    login.appendChild(mount);
+                }
+            })();
+        </script>
+        <?php
+    }
 }

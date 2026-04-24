@@ -30,7 +30,7 @@ class Clienvy_Endpoint_Token {
 			if ( empty( $body[ $field ] ) ) {
 				return new WP_REST_Response( [
 					'success' => false,
-					'message' => "Required field is missing: {$field}",
+					'message' => Clienvy_I18n::t( '_api.connection_token_missing_field', [ 'field' => $field ] ),
 				], 400 );
 			}
 		}
@@ -41,7 +41,7 @@ class Clienvy_Endpoint_Token {
 		$role       = sanitize_text_field( $body['role'] );
 
 		if ( ! is_email( $email ) ) {
-			return new WP_REST_Response( [ 'success' => false, 'message' => 'Invalid email.' ], 400 );
+			return new WP_REST_Response( [ 'success' => false, 'message' => Clienvy_I18n::t( '_api.connection_token_invalid_email' ) ], 400 );
 		}
 
 		$user = get_user_by( 'email', $email ) ?: $this->create_user( $email, $first_name, $last_name, $role );
@@ -49,7 +49,7 @@ class Clienvy_Endpoint_Token {
 		if ( is_wp_error( $user ) ) {
 			return new WP_REST_Response( [
 				'success' => false,
-				'message' => 'Could not create user: ' . $user->get_error_message(),
+				'message' => Clienvy_I18n::t( '_api.connection_token_could_not_create_user', [ 'error' => $user->get_error_message() ] ),
 			], 500 );
 		}
 

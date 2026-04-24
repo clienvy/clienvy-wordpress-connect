@@ -38,7 +38,7 @@ class Clienvy_CLI {
 	 */
 	public function secret( array $args, array $assoc_args ): void {
 		if ( ( $args[0] ?? '' ) === 'reset' ) {
-			$secret = clienvy_generate_secret();
+			$secret = Clienvy_Secret::generate();
 			update_option( 'clienvy_connection_secret', $secret );
 			WP_CLI::success( $secret );
 			return;

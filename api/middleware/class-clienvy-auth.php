@@ -27,7 +27,7 @@ class Clienvy_Auth {
 	public function unauthorized(): WP_REST_Response {
 		return new WP_REST_Response( [
 			'success' => false,
-			'message' => 'Invalid connection secret.',
+			'message' => Clienvy_I18n::t( '_api.connection_secret_invalid' ),
 		], 401 );
 	}
 }

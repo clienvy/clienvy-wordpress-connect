@@ -1,0 +1,112 @@
+.clienvy-admin {
+    /* global */
+    --clienvy-primary-color: #4191f7;
+    --clienvy-border-color: #f2f2f2;
+    --clienvy-light-border-color: #f5f5f5;
+
+    /* text */
+    --clienvy-text-color: #bbb;
+    --clienvy-bold-color: #999;
+    --clienvy-heading-color: #160547;
+
+    /* font */
+    --clienvy-text-font-family: "Circular Std", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --clienvy-text-font-size: 15px;
+    --clienvy-text-font-weight: 400;
+
+    /* card */
+    --clienvy-card-background-color: #fff;
+    --clienvy-card-border: 1px solid var(--clienvy-light-border-color);
+    --clienvy-card-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --clienvy-card-border-radius: 14px;
+    --clienvy-card-divider-color: #f5f5f5;
+    --clienvy-card-header-heading-color: var(--clienvy-heading-color);
+    --clienvy-card-header-text-color: var(--clienvy-text-color);
+    --clienvy-card-header-icon-color: #ccc;
+
+    /* form field */
+    --clienvy-form-field-color: #222;
+    --clienvy-form-field-border-color: #f2f2f9;
+    --clienvy-form-field-border-width: 1px;
+    --clienvy-form-field-background-color: #fff;
+    --clienvy-form-field-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    --clienvy-form-field-hover-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    --clienvy-form-field-focus-border-color: var(--clienvy-form-field-border-color);
+    --clienvy-form-field-border-radius: 12px;
+    --clienvy-form-field-min-height: 44px;
+    --clienvy-form-field-font-size: 15px;
+    --clienvy-form-field-font-weight: 400;
+    --clienvy-form-field-input-padding: 7px 22px;
+    --clienvy-form-field-placeholder-color: #bbb;
+    --clienvy-form-field-disabled-background-color: #fcfcfc;
+    --clienvy-form-field-disabled-color: #aaa;
+    --clienvy-form-label-color: #aaa;
+    --clienvy-form-label-font-size: 14px;
+    --clienvy-form-label-font-weight: 400;
+    --clienvy-form-field-label-spacing: 5px;
+    --clienvy-form-layout-gap: 15px;
+
+    /* button */
+    --clienvy-button-background-color: var(--clienvy-primary-color);
+    --clienvy-button-color: #fff;
+    --clienvy-button-border-width: 0;
+    --clienvy-button-border-color: transparent;
+    --clienvy-button-box-shadow: none;
+    --clienvy-button-font-family: var(--clienvy-text-font-family);
+    --clienvy-button-font-size: 15px;
+    --clienvy-button-font-weight: 400;
+    --clienvy-button-border-radius: 14px;
+    --clienvy-button-padding: 0 21px;
+    --clienvy-button-height: 41px;
+    --clienvy-button-hover-background-color: var(--clienvy-primary-color);
+    --clienvy-button-hover-color: var(--clienvy-button-color);
+
+    /* button flat */
+    --clienvy-button-flat-background-color: #f7f7f7;
+    --clienvy-button-flat-color: #333;
+    --clienvy-button-flat-icon-color: #555;
+    --clienvy-button-flat-hover-background-color: #f4f4f4;
+    --clienvy-button-flat-hover-color: #222;
+    --clienvy-button-flat-hover-icon-color: #444;
+
+    /* button danger */
+    --clienvy-button-danger-background-color: #ff6b6b;
+    --clienvy-button-danger-color: #fff;
+    --clienvy-button-danger-hover-background-color: #fd6060;
+    --clienvy-button-danger-hover-color: #fff;
+
+    /* popcorn */
+    --clienvy-popcorn-background-color: #fff;
+    --clienvy-popcorn-border-color: var(--clienvy-border-color);
+    --clienvy-popcorn-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+    --clienvy-popcorn-text-color: #222;
+    --clienvy-popcorn-success-color: var(--clienvy-primary-color);
+    --clienvy-popcorn-error-color: #e89b9b;
+    --clienvy-popcorn-icon-color: #fff;
+
+    /* modal */
+    --clienvy-modal-background-color: #fff;
+    --clienvy-modal-mask-background-color: rgba(0, 0, 0, 0.2);
+    --clienvy-modal-border-radius: 14px;
+    --clienvy-modal-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05);
+
+    /* tag */
+    --clienvy-tag-border-radius: 8px;
+    --clienvy-tag-font-size: 13px;
+    --clienvy-tag-padding: 4px 12px;
+    --clienvy-tag-green-background-color: #e9f6e8;
+    --clienvy-tag-green-color: #35b742;
+    --clienvy-tag-red-background-color: #fdf2f2;
+    --clienvy-tag-red-color: #fa7575;
+    --clienvy-tag-gray-background-color: #f7f7f7;
+    --clienvy-tag-gray-color: #b6c1cf;
+
+    /* logs */
+    --clienvy-logs-background-color: #fafafa;
+    --clienvy-logs-border-color: var(--clienvy-form-field-border-color);
+    --clienvy-logs-box-shadow: var(--clienvy-form-field-box-shadow);
+    --clienvy-logs-border-radius: 12px;
+    --clienvy-logs-color: #555;
+    --clienvy-logs-font-family: "SF Mono", Menlo, Monaco, "Courier New", monospace;
+    --clienvy-logs-font-size: 12px;
+}

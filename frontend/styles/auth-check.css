@@ -14,7 +14,9 @@
 #wp-auth-check-wrap .wp-auth-check-close {
 	display: none !important;
 }
-
+#wp-auth-check-wrap #wp-auth-check-form {
+    display: flex;
+}
 #wp-auth-check-wrap #wp-auth-check-form iframe {
 	height: 100% !important;
     overflow: visible !important;

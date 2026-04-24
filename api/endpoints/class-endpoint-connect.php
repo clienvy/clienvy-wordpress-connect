@@ -31,7 +31,7 @@ class Clienvy_Endpoint_Connect {
 		}
 
 		return new WP_REST_Response(
-			array_merge( [ 'success' => true, 'message' => 'Connection verified.' ], Clienvy_Site_Info::collect() ),
+			array_merge( [ 'success' => true, 'message' => Clienvy_I18n::t( '_api.connection_secret_valid_and_connected' ) ], Clienvy_Site_Info::collect() ),
 			200
 		);
 	}
