@@ -20,22 +20,30 @@ class Clienvy_Settings_Synchronize {
 		'primary_color',
 		'custom_login_slug',
 		'logo_url',
+		'smtp_host',
+		'smtp_port',
+		'smtp_username',
+		'smtp_sender_name',
+		'smtp_sender_email',
+		'smtp_reply_to_name',
+		'smtp_reply_to_email',
 	];
 
 	private const BOOL_FIELDS = [
 		'custom_login_styling_enabled',
 		'customer_access',
+		'smtp_enabled',
+		'smtp_reply_to_enabled',
 	];
 
 	private const CSS_FIELDS = [
 		'custom_login_css',
 	];
 
-	/**
-	 * Merges the provided body fields into the stored settings.
-	 * Only fields that are present in the body are updated.
-	 * Returns true if the admin slug changed (caller may want to flush rewrite rules).
-	 */
+	private const RAW_FIELDS = [
+		'smtp_password',
+	];
+
 	public function apply( array $body ): bool {
 		$current  = get_option( 'clienvy_settings', [] );
 		$old_slug = $current['custom_login_slug'] ?? '';
@@ -55,6 +63,12 @@ class Clienvy_Settings_Synchronize {
 		foreach ( self::CSS_FIELDS as $field ) {
 			if ( array_key_exists( $field, $body ) ) {
 				$current[ $field ] = wp_strip_all_tags( $body[ $field ] );
+			}
+		}
+
+		foreach ( self::RAW_FIELDS as $field ) {
+			if ( array_key_exists( $field, $body ) ) {
+				$current[ $field ] = is_string( $body[ $field ] ) ? $body[ $field ] : '';
 			}
 		}
 

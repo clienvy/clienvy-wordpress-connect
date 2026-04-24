@@ -1,0 +1,39 @@
+.clienvy-admin {
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 40px;
+    font-family: var(--clienvy-text-font-family) !important;
+    font-size: var(--clienvy-text-font-size);
+    font-weight: var(--clienvy-text-font-weight);
+    color: var(--clienvy-text-color);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.clienvy-admin--ready {
+    opacity: 1;
+}
+
+.clienvy-admin *,
+.clienvy-admin *::before,
+.clienvy-admin *::after {
+    box-sizing: border-box;
+}
+
+.clienvy-admin h1,
+.clienvy-admin p,
+.clienvy-admin dl,
+.clienvy-admin dt,
+.clienvy-admin dd {
+    margin: 0;
+    padding: 0;
+    font-family: var(--clienvy-text-font-family) !important;
+}
+
+.clienvy-admin p {
+    font-size: 15px;
+    color: var(--clienvy-text-color);
+    letter-spacing: 0.5px;
+    line-height: 135%;
+}

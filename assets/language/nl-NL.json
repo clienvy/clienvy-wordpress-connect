@@ -1,0 +1,108 @@
+{
+  "_button": {
+    "cancel": "Annuleren",
+    "close": "Sluiten",
+    "copy": "Kopieer",
+    "reset": "Resetten",
+    "reveal": "Klik om te zien",
+    "send_test_mail": "Verstuur testmail",
+    "sending": "Bezig…",
+    "test_smtp": "Testmail versturen"
+  },
+  "_field": {
+    "connection_secret": "Connection Secret",
+    "recipient": "Ontvanger",
+    "smtp_server": "Server",
+    "smtp_user": "Gebruiker",
+    "smtp_sender": "Afzender",
+    "smtp_reply_to": "Reply-to"
+  },
+  "_word": {
+    "connected": "Verbonden",
+    "disconnected": "Niet verbonden",
+    "active": "Actief",
+    "inactive": "Niet actief",
+    "technical_details": "Technische details",
+    "smtp_config_heading": "Configuratie",
+    "smtp_reason_heading": "Reden",
+    "smtp_debug_heading": "SMTP protocol trace"
+  },
+  "_error": {
+    "generic": "Er is een fout opgetreden.",
+    "request_failed": "Verzoek mislukt."
+  },
+  "_api": {
+    "connection_secret_invalid": "Invalid connection secret provided.",
+    "connection_secret_valid_and_connected": "Connection secret is valid and connected.",
+    "connection_synchronization_done": "The settings have been synchronized.",
+    "connection_disconnect_done": "The site has been disconnected from Clienvy.",
+    "connection_token_missing_field": "Required field is missing: {field}",
+    "connection_token_invalid_email": "Invalid email.",
+    "connection_token_could_not_create_user": "Could not create user: {error}"
+  },
+  "_admin": {
+    "_endpoints": {
+      "_auth": {
+        "unauthorized": "Niet geautoriseerd."
+      },
+      "_secret": {
+        "already_revealed": "Secret is al getoond."
+      },
+      "_smtp": {
+        "not_enabled": "SMTP relay is niet ingeschakeld.",
+        "invalid_email": "Het e-mailadres is ongeldig.",
+        "sent_to": "Testmail verzonden naar {email}.",
+        "send_failed": "Versturen mislukt. Controleer de SMTP instellingen.",
+        "send_failed_with_reason": "Versturen mislukt: {reason}",
+        "detail_server": "Server: {host}:{port}",
+        "detail_user": "Gebruiker: {user}",
+        "test_subject": "Clienvy SMTP testmail",
+        "test_body": "Dit is een testmail verzonden vanuit Clienvy Connect. Als je deze e-mail ontvangt werkt je SMTP relay correct."
+      }
+    },
+    "_frontend": {
+      "_login": {
+        "heading": "Login hieronder in met je Wordpress account, of maak gebruik van One-Click Login.",
+        "or": "Of",
+        "sso_employee": "Inloggen als beheerder",
+        "sso_customer": "Inloggen als klant"
+      },
+      "_settings": {
+        "_page": {
+          "title": "Clienvy Connect"
+        },
+        "_connection_secret": {
+          "_connected": {
+            "title": "Gekoppeld met Clienvy",
+            "info": "Deze site is gekoppeld aan Clienvy, je kunt daarom gebruik maken van One-Click Login. Hieronder kun je Clienvy ontkoppelen door een nieuwe connection secret te genereren."
+          },
+          "_disconnected": {
+            "title": "Koppelen met Clienvy",
+            "info": "Koppel deze site aan Clienvy om gebruik te maken van One-Click Login en om de styling van de login pagina te personaliseren. Om te verbinden moet je de applicatie aanmaken in Clienvy en de onderstaande authenticatiecode opgeven."
+          },
+          "confirm_reset_title": "Authenticatiecode resetten",
+          "confirm_reset": "Weet je zeker dat je de authenticatiecode wilt resetten? Na het resetten is Clienvy niet meer verbonden. Gebruikers kunnen dan tijdelijk niet via One-Click Login inloggen.",
+          "reset_success": "De authenticatiecode is gereset, je kunt hem nu kopieren.",
+          "connection_secret_copied": "De authenticatiecode is gekopieerd naar je klembord. Plak deze nu in Clienvy om te verbinden."
+        },
+        "_smtp": {
+          "_disabled": {
+            "title": "SMTP Relay",
+            "info": "Er is geen SMTP relay actief via Clienvy Connect. Uitgaande mail van deze website wordt verstuurd via de standaard WordPress mailer. Beheer deze instellingen vanuit Clienvy."
+          },
+          "_enabled": {
+            "title": "SMTP Relay",
+            "info": "SMTP relay actief en alle uitgaande mail van deze website wordt verstuurd via de in Clienvy ingestelde SMTP relay server in plaats van de standaard WordPress mailer. De instellingen worden beheerd vanuit Clienvy."
+          },
+          "_test": {
+            "modal_title": "SMTP relay testen",
+            "modal_intro": "Vul een e-mailadres in waar de testmail naartoe moet. Bij een fout zie je onderaan de technische details waarmee je het probleem kunt herleiden.",
+            "success": "Testmail verzonden.",
+            "empty_email": "Vul een e-mailadres in.",
+            "generic_error": "Versturen mislukt."
+          }
+        }
+      }
+    }
+  }
+}

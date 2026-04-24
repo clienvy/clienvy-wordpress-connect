@@ -29,7 +29,7 @@ class Clienvy_Endpoint_Synchronize {
 		$this->synchronize->apply( $body );
 
 		return new WP_REST_Response(
-			array_merge( [ 'success' => true, 'message' => 'Settings synchronized.' ], Clienvy_Site_Info::collect() ),
+			array_merge( [ 'success' => true, 'message' => Clienvy_I18n::t( '_api.connection_synchronization_done' ) ], Clienvy_Site_Info::collect() ),
 			200
 		);
 	}
