@@ -3,7 +3,7 @@
  * Plugin Name: Clienvy Connect
  * Plugin URI: https://clienvy.io
  * Description: Connect WordPress with Clienvy
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: Clienvy
  * License: GPL-2.0+
  * Requires PHP: 7.4

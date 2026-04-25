@@ -126,8 +126,12 @@ class Clienvy_Login
 
     public function inject_font(): void
     {
-        $font_url = esc_url(CLIENVY_PLUGIN_URL . 'assets/fonts/circular-std-400.woff');
-        echo "<style>@font-face { font-family: 'Circular Std'; font-weight: 400; src: url('{$font_url}') format('woff'); }</style>\n";
+        $font_300 = esc_url(CLIENVY_PLUGIN_URL . 'assets/fonts/circular-std-300.woff');
+        $font_400 = esc_url(CLIENVY_PLUGIN_URL . 'assets/fonts/circular-std-400.woff');
+        echo "<style>";
+        echo "@font-face { font-family: 'Circular Std'; font-weight: 300; src: url('{$font_300}') format('woff'); }";
+        echo "@font-face { font-family: 'Circular Std'; font-weight: 400; src: url('{$font_400}') format('woff'); }";
+        echo "</style>\n";
     }
 
 
@@ -174,6 +178,9 @@ class Clienvy_Login
 		--clienvy-auth-input-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
 		--clienvy-auth-text-color: #bbb;
 		--clienvy-auth-strong-text-color: #999;
+		--clienvy-auth-error-border-color: #f5f5f5;
+		--clienvy-auth-error-border-left-color: #e89b9b;
+		--clienvy-auth-error-color: #444;
 		}\n";
 
         if( $logo ) {

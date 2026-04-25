@@ -1,4 +1,4 @@
-/* Clienvy Connect — SSO Buttons (always loaded) */
+/* Clienvy Connect — SSO functional layout (always loaded) */
 
 .clienvy-sso {
     display: flex;
@@ -9,68 +9,33 @@
 
 /* ── "Of" divider ── */
 .clienvy-divider {
-	display: flex;
-	align-items: center;
-	gap: 12px;
-	margin: 0 0 22px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 22px 0;
     width: 110px;
 }
 
 .clienvy-divider::before,
 .clienvy-divider::after {
-	content: "";
-	flex: 1;
-	height: 1px;
-	background: var(--clienvy-auth-separator-border-color);
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.3;
 }
 
-.clienvy-divider span {
-	font-size: 13px;
-	color: var(--clienvy-auth-separator-color);
-	font-weight: 500;
-}
-
-/* ── SSO buttons ── */
+/* ── SSO buttons stack ── */
 .clienvy-sso-buttons {
-	display: flex;
-	flex-direction: column;
-	gap: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
     width: 100%;
 }
 
-.wp-core-ui form .button, .login .clienvy-sso-btn {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 8px;
-	padding: 8px 16px;
-	border-radius: 15px;
-	font-size: 16px;
-	font-weight: 400;
-	text-decoration: none;
-	border: 1px solid transparent;
-	transition: opacity 0.15s;
-	line-height: 1;
-	cursor: pointer;
-	letter-spacing: 0.3px;
-    background: var(--clienvy-auth-button-background-color, #2171B1);
-    color: var(--clienvy-auth-button-color, #fff);
-    height: 43px;
-    box-sizing: border-box;
-    transition: transform 0.2s;
-}
-
-.wp-core-ui form .button:hover, .login .clienvy-sso-btn:hover {
-	text-decoration: none;
-    background: var(--clienvy-auth-button-background-color, #2171B1);
-    color: var(--clienvy-auth-button-color, #fff);
-    transform: scale(1.02);
-    outline: none;
-    border: none
-}
-.wp-core-ui form .button:focus, .wp-core-ui form .button:active, .login .clienvy-sso-btn:active, .login .clienvy-sso-btn:focus {
-    background: var(--clienvy-auth-button-background-color, #2171B1);
-    color: var(--clienvy-auth-button-color, #fff);
-    outline: none;
-    box-shadow: none;
+.login .clienvy-sso-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
