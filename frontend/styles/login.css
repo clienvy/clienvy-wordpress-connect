@@ -2,19 +2,19 @@
 
 /* ── Page ── */
 .login {
-	height: 100%;
-	background: var(--clienvy-auth-background-color);
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	display: flex;
+    height: 100%;
+    background: var(--clienvy-auth-background-color) !important;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
     font-family: "Circular Std", sans-serif !important;
 }
 
 /* ── Container ── */
 html #login {
-	padding: 20px !important;
-	width: 500px !important;
+    padding: 20px !important;
+    width: 500px !important;
     box-sizing: border-box;
 }
 
@@ -28,14 +28,14 @@ html #login {
 
 html #login h1 a,
 .login h1 a {
-	display: none;
-	background-size: contain;
-	height: 75px;
-	width: 230px;
-	background-repeat: no-repeat;
-	background-position: center;
-	box-shadow: none;
-	outline: none;
+    display: none;
+    background-size: contain;
+    height: 75px;
+    width: 230px;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: none;
+    outline: none;
     margin: 0;
 }
 
@@ -43,12 +43,12 @@ html #login h1 a,
 /* ── Form ── */
 html .login form,
 html .login .message {
-	border: none;
-	border-radius: 0;
-	padding: 0;
+    border: none;
+    border-radius: 0;
+    padding: 0;
     margin: 0;
-	box-shadow: none;
-	background: none;
+    box-shadow: none;
+    background: none;
 }
 
 html .login form {
@@ -58,36 +58,38 @@ html .login form {
 /* –– text –– */
 html .login p {
     font-size: 16px;
-    color: var(--clienvy-auth-text-color);
+    color: var(--clienvy-auth-text-color) !important;
     line-height: 1.3;
 }
+
 html .login .message p {
     margin-bottom: 28px;
 }
 
 /* ── Focus ── */
 html *:focus {
-	outline: none;
+    outline: none;
 }
 
 /* ── Inputs ── */
 html .login form label {
-    color: var(--clienvy-auth-input-label-color);
+    color: var(--clienvy-auth-input-label-color) !important;
     font-size: 15px;
     margin-bottom: 5px;
 }
 
 html .login form input {
-	background-color: var(--clienvy-auth-input-background-color) !important;
+    background-color: var(--clienvy-auth-input-background-color) !important;
     color: var(--clienvy-auth-input-color) !important;
-	border-width: 1px !important;
-	padding: 10px 16px !important;
+    border-width: 1px !important;
+    padding: 10px 16px !important;
     height: 43px !important;
-	font-size: 16px !important;
-	border-color: var(--clienvy-auth-input-border-color) !important;
-	box-shadow: var(--clienvy-auth-input-box-shadow) !important;
-	border-radius: 11px !important;
+    font-size: 16px !important;
+    border-color: var(--clienvy-auth-input-border-color) !important;
+    box-shadow: var(--clienvy-auth-input-box-shadow) !important;
+    border-radius: 11px !important;
 }
+
 html .login form .wp-hide-pw {
     display: none !important;
 }
@@ -95,31 +97,31 @@ html .login form .wp-hide-pw {
 /* ── Submit button ── */
 html .login form .button-primary {
     margin-top: 15px;
-	background: var(--clienvy-auth-button-background-color) !important;
-	border: none !important;
-	border-radius: 15px !important;
-	font-size: 16px !important;
-	padding: 5px 30px !important;
+    background: var(--clienvy-auth-button-background-color) !important;
+    border: none !important;
+    border-radius: 15px !important;
+    font-size: 16px !important;
+    padding: 5px 30px !important;
     height: 43px !important;
-	letter-spacing: 0.3px;
+    letter-spacing: 0.3px;
     line-height: 1.2 !important;
-	color: var(--clienvy-auth-button-color) !important;
-	width: 100%;
+    color: var(--clienvy-auth-button-color) !important;
+    width: 100%;
     box-shadow: none !important;
-	transition: transform 0.2s;
+    transition: transform 0.2s;
     display: flex;
     align-items: center;
 }
 
 html .login form .button-primary:hover {
     text-decoration: none;
-    color: var(--clienvy-auth-button-color);
+    color: var(--clienvy-auth-button-color) !important;
     transform: scale(1.02);
 }
 
 /* ── Remember me ── */
 html .login .forgetmenot {
-	margin-top: 2px;
+    margin-top: 2px;
     margin-bottom: 7px !important;
     display: flex;
     width: 100%;
@@ -128,8 +130,8 @@ html .login .forgetmenot {
 }
 
 html .login #rememberme {
-	padding: 11px !important;
-	accent-color: var(--clienvy-auth-primary-color);
+    padding: 11px !important;
+    accent-color: var(--clienvy-auth-primary-color) !important;
     width: 25px !important;
     height: 25px !important;
     display: flex;
@@ -138,24 +140,25 @@ html .login #rememberme {
     justify-content: center;
     margin: 0;
 }
+
 html .login .forgetmenot label {
     margin: 0;
 }
 
 html .login #rememberme::before {
-	margin: -10px;
+    margin: -10px;
     width: 25px;
     height: 25px;
 }
 
 /* ── Error ── */
 html .login #login_error {
-	border-radius: 8px;
-	border: 1px solid #f5f5f5;
-	border-left-color: #e89b9b;
-	border-left-width: 4px;
+    border-radius: 8px;
+    border: 1px solid #f5f5f5;
+    border-left-color: #e89b9b;
+    border-left-width: 4px;
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.08);
-	font-size: 16px;
+    font-size: 16px;
     position: fixed;
     padding: 13px 20px;
     bottom: 10px;
@@ -163,6 +166,7 @@ html .login #login_error {
     width: 600px;
     box-sizing: border-box;
 }
+
 html .login #login_error p {
     color: #888;
 }
@@ -176,15 +180,16 @@ html .login #login_error p {
 }
 
 .login #nav a {
-	font-size: 15px !important;
-	color: var(--clienvy-auth-password-reset-color);
-	text-decoration: none;
+    font-size: 15px !important;
+    color: var(--clienvy-auth-password-reset-color) !important;
+    text-decoration: none;
 }
 
 .login #nav a:hover {
-	color: var(--clienvy-auth-password-reset-hover-color);
+    color: var(--clienvy-auth-password-reset-hover-color) !important;
     outline: none;
 }
+
 .login #nav a:focus, .login #nav a:active {
     outline: none;
     box-shadow: none;
@@ -192,12 +197,12 @@ html .login #login_error p {
 
 /* ── Back to blog — hidden ── */
 #backtoblog a {
-	display: none !important;
+    display: none !important;
 }
 
 /* ── Privacy policy link — hidden ── */
 html .login .privacy-policy-page-link {
-	display: none;
+    display: none;
 }
 
 /* ── Lost password form ── */
@@ -205,24 +210,25 @@ html .login #lostpasswordform {
 }
 
 html .login #lostpasswordform #wp-submit {
-	width: 100% !important;
+    width: 100% !important;
 }
 
 /* ── Language switcher ── */
 .login.wp-core-ui .language-switcher {
-	position: absolute !important;
-	top: 20px !important;
-	right: 20px !important;
+    position: absolute !important;
+    top: 20px !important;
+    right: 20px !important;
 }
 
 .login.wp-core-ui #language-switcher {
-	display: flex !important;
-	flex-direction: column !important;
+    display: flex !important;
+    flex-direction: column !important;
 }
 
 .login.wp-core-ui #language-switcher .dashicons-translation {
-	display: none !important;
+    display: none !important;
 }
+
 html .login .language-switcher .button {
     background: var(--clienvy-auth-flat-button-background-color) !important;
     color: var(--clienvy-auth-flat-button-color) !important;
@@ -230,6 +236,7 @@ html .login .language-switcher .button {
     padding: 0 !important;
     border: none !important;
 }
+
 html .login .language-switcher select {
     background-color: var(--clienvy-auth-input-background-color) !important;
     border-width: 1px !important;
@@ -243,8 +250,9 @@ html .login .language-switcher select {
     border-radius: 10px !important;
     width: 100% !important;
 }
+
 html .login .language-switcher select:hover {
-    color: var(--clienvy-auth-input-color);
+    color: var(--clienvy-auth-input-color) !important;
 }
 
 
@@ -252,29 +260,36 @@ html .login .language-switcher select:hover {
 .admin-email__heading {
     display: none !important;
 }
+
 .admin-email__details {
     font-size: 16px;
-    color: var(--clienvy-auth-text-color);
+    color: var(--clienvy-auth-text-color) !important;
     line-height: 1.4;
 }
+
 .login a {
-    color: var(--clienvy-auth-primary-color);
+    color: var(--clienvy-auth-primary-color) !important;
 }
+
 .admin-email__details strong {
-    color: var(--clienvy-auth-strong-text-color);
+    color: var(--clienvy-auth-strong-text-color) !important;
 }
+
 .admin-email__actions-primary {
     display: flex;
     flex-direction: column-reverse;
     gap: 20px;
 }
+
 .login .admin-email__actions {
     margin-top: 20px;
 }
+
 .login .admin-email__actions .button {
     background: var(--clienvy-auth-flat-button-background-color) !important;
     color: var(--clienvy-auth-flat-button-color) !important;
 }
+
 .login .admin-email__actions .button-primary {
     margin: 0;
     background: var(--clienvy-auth-button-background-color) !important;
@@ -290,9 +305,10 @@ html .login .language-switcher select:hover {
 
 .admin-email__actions-secondary a {
     font-size: 15px !important;
-    color: var(--clienvy-auth-password-reset-color);
+    color: var(--clienvy-auth-password-reset-color) !important;
     text-decoration: none;
 }
+
 .admin-email__actions-secondary a:active, .admin-email__actions-secondary a:focus {
     border: none;
     box-shadow: none;
@@ -303,14 +319,17 @@ html .login .language-switcher select:hover {
 #resetpassform .indicator-hint {
     margin-bottom: 40px !important;
 }
+
 #resetpassform .reset-pass-submit {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
+
 #resetpassform .reset-pass-submit .button {
     margin: 0;
 }
+
 html #resetpassform .pw-weak {
     margin-top: 0;
     margin-bottom: 20px;
@@ -319,9 +338,10 @@ html #resetpassform .pw-weak {
     gap: 10px;
     align-items: center;
 }
+
 #resetpassform #pw-weak {
     padding: 11px !important;
-    accent-color: var(--clienvy-auth-primary-color);
+    accent-color: var(--clienvy-auth-primary-color) !important;
     width: 25px !important;
     height: 25px !important;
     display: flex;
@@ -330,6 +350,7 @@ html #resetpassform .pw-weak {
     justify-content: center;
     margin: 0;
 }
+
 #resetpassform .pw-weak label {
     margin: 0;
 }
